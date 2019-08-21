@@ -46,9 +46,11 @@ header-img: "img/home-bg-art.jpg"
 
 ### 联系
 
-- [博客：www.github.chenweita.io.com](www.leunggabou.com)
+- [博客：https://chenweita.github.io/
+](https://chenweita.github.io/
+)
 - 微信：1320673491
-- [微博@宝-steven](http://weibo.com/207775270)
+- [微博@陈花花啊啊啊]
 - QQ:1320673491
 
 
