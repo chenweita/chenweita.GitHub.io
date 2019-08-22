@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "拼着一切，奔向属于自己的前程 "
-header-img: "img/huahuayihao.jpg"
+header-img: "img/huahuasanhao.jpg"
 ---
 
 
