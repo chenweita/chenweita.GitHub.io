@@ -1,9 +1,9 @@
 # Site settings
-title: WEB—连接世界 
-header-img: img/home-bg.jpg
-email: leunggabou@gmail.com
-description: "梁家宝|我的前端" 
-url: "http://leunggabou.com"              # your host, for absolute URL
+title: 花花的世界
+header-img: ac.jpg
+email: 1320673491@qq.com
+description: "陈泽桦|我的前端" 
+url: "https://chenweita.github.io/"              # your host, for absolute URL
 baseurl: ""                             # for example, '/blog' if your blog hosted on 'host/blog'
 lean_cloud :
   app_id   :  h0VLBqXqt7BQzRvaRk9fUWBs-gzGzoHsz
@@ -13,8 +13,8 @@ lean_cloud :
 # SNS settings
 RSS: false
 
-zhihu_username:    "A-bao-96-07-09"
-github_username:    "Steven19960709"
+zhihu_username:    ""
+github_username:    "chenweita"
 #twitter_username:   huxpro
 #facebook_username:  huxpro
 # linkedin_username:  firstname-lastname-idxxxx
@@ -54,7 +54,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Steven.Leung"
+      author: "Chen"
       header-img: "img/post-bg-universe.jpg" # We don't want posts without a header image, that whould mean white on white
       favicon: img/favicon.ico
 
