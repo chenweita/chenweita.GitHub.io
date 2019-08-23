@@ -1,8 +1,8 @@
 ---
 layout: page
 title: "About"
-description: "拼着一切，奔向属于自己的前程 "
-header-img: "img/about2.jpg"
+description: "努力努力再努力 "
+header-img: "img/shihao.jpg"
 ---
 
 
