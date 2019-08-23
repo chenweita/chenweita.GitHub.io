@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "努力努力再努力 "
-header-img: "img/about4.jpg"
+header-img: "img/ad.jpg"
 ---
 
 
