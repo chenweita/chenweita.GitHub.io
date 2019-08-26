@@ -1,0 +1,55 @@
+---
+layout: post
+title: Javascript相关知识以及介绍
+data: 2019-08-25
+categories: blog
+tags: [Javascript]
+---
+
+
+#    JS发展历史： 
+
+
+js作为一部分首次出现是在1996年，最初设计目标是为了改善网页用户体验，作者名字叫做Brendan Eich。刚开始Javascript并不叫作这个名字，而是叫做livescript，后来才改了这个名字。2001年时，IE6首次实现对js引擎的优化和分离。2008年Google Chrome又进一步优化JS引擎，能把js代码直接变成机械码来执行，最后Firefox TraceMonkey JeagerMonkey频繁执行优化，就发展成了今天的Javascript。
+
+
+  #  js特点：
+
+  每一门编程语言都有其特点，那Js的特点是什么呢？
+
+  - 解释性语言
+
+  - 单线程
+
+   C C++ ruby是静态语言，而php phpthon Javascript
+
+   Javascript弥补静态语言的不足，先通过Java.c虚构器-->class-->jvm解释执行，先编译后解释
+
+
+编译  编译性语言 翻译后生成obj文件后执行  快
+
+解释  解释性语言 翻译一行执行一行      慢
+
+不同操作系统对同一文件的扩展名识别情况不同
+
+.erp缺点：很难跨平台只生成一个文件不能在多个操作系统上执行
+
+.exe windows可以识别 linux 不可以识别 
+
+
+
+#  ECMA标注-->ECMAScript 
+
+js执行主线程 轮播时间片（争抢）：类似吃饭 顺序随机
+
+js三大部分：
+
+1.ECMAScript 底层语法
+
+2.DOM 操作html，css
+
+3.BOM 操作浏览器
+
+----
+
+这只是Js的小开头，下面还有更多关于js的内容，如果有兴趣的话，关注我每天的更新吧。
