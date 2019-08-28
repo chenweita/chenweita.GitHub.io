@@ -1,0 +1,170 @@
+---
+layout: post
+title: JavaScript函数
+date: 2019-08-28
+categories: blog
+tags: [JavaScript]
+---
+
+我们编程的时候，要尽量避免重复，偶合，低效代码，保证编程的高内聚，弱偶合 做到简化代码。那么如何实现呢？这时候就要通过函数。
+
+# 函数 
+
+函数其实是一种引用值，我们通常定义，后调用函数。
+
+下面是一个例子：
+
+        function test(){
+            console.log('a');
+        }
+        test();
+
+这里的test();实际上就是调用函数，而且调用一次在控制台打印一个a。
+
+那语句写{}里外，调用函数有不一样吗？
+
+如果写在{}外面，其实就不属于这个函数了，无论你调不调用，这些语句都会执行。
+
+那我们来了解一些函数的基本知识吧。
+
+# 定义 
+
+## (1)函数声明 
+
+一个函数的声明其实就是我上面举的这个例子
+
+        function test() {
+
+        }
+
+格式方面注意：括号不可省略，语句要写在{}内。
+
+开发规范：函数和变量要用多个单词连接，首字母小写，后都大写，也就是小驼峰式。
+
+函数的起名与变量差不多，但是当我们起名的时候，最好用与功能相关的英语去起名，这样方便查找，用中文拼音就算了，这样显得有点low。
+
+        function test(){
+
+        }
+        document.write(test());1
+
+这个函数打印出来的内容又是什么呢？
+学过C++的同学肯能会认为输出的是地址，但其实Javaecript是一门弱数据语言，弱数据语言不可能输出地址。打印出来的内容是函数  function test(){}
+
+
+## (2)函数表达式
+
+>>1 命名函数表达式，类似于这样的形式
+
+        var test = function test(){
+            document.write('a');
+        }
+        test();
+打印出来的是a
+
+
+>>2 匿名函数表达式 
+
+        var test = function (){
+            document.write('a');
+        }
+        test();
+
+匿名函数表达式也叫函数表达式，顾名思义，表达式忽略名字。那它与函数声明有什么不同呢？函数声明可以在控制台直接输test，就可以表示函数。但函数表达式不能
+
+
+
+
+## 2.组成形式：
+
+函数关键字，函数名，括号()，大括号{}，参数可有可无，高级编程需要参数
+
+### (1)函数名称
+
+### (2)参数 填() 
+
+如：         形参（形式参数）
+
+        function test(a,b){
+            document.write(a+b)
+        }
+
+相当于声明变量var a;var b;然后传参test(1,2);赋值a=1，b=2，输出结果3。
+不需要在括号里定义参数。
+
+写一个求和函数：
+
+        function sum(a,b){
+            var c=a+b;
+            document.write(c)
+        }
+
+抽象规则 针对不同参数进行不同处理
+
+说到参数，这里涉及到一个实参列表的知识：arguments []，可计算长度，可遍历
+
+参数不限制位数 当形参位数>实参位数时，有对应实参的形参都有值，剩下的都是undefined。
+当实参位数>形参位数时，后边的形参相当于被忽略。
+
+        function sum(a){
+        console.log(arguments.length); //实参长度
+        console.log(sum.length);//形参长度
+        }
+
+console.log 之前我们在讲打印的时候，有用document.write()和console.log(),一般我们都用console.log()，显得比较专业。并且用document.write()会有一些影响，我们后面再讲。
+
+把实参列表里的数相加：
+
+        function sum(){
+            var result = 0；
+            for(var i = 0;i < arguments.length;i++){
+                result += arguments[i]
+            }
+            console.log(result);
+        }
+
+那如果先定义一个数，然后又改变了值，请问argument改的是它的值，还是列表中的下一位的值呢？
+
+        function change(a){
+            var a=1;
+            a=2;
+            console.log(arguments[i]);
+        }
+
+
+这里讲一下映射规则，实参和形参列表之间有个映射关系，这个映射关系必须是在两者长度一致的时候才会存在，当这个映射关系存在时，如果形参列表发生改变，那么实参列表也会跟着改变。同样，如果实参列表发生改变，那么形参列表也会跟着改变。也就是说，映射规则必须要是一一对应的，如果形参位数不等于实参位数，都是没有映射规则的。
+
+
+### (3)返回值
+
+return的作用：
+
+1.终止函数
+
+        function sum(a,b){
+            console.log('a');
+            return;
+            console.log('b');
+        }
+
+只能打出a
+
+2.返回变量:把一个值返回到函数外面
+
+        function sum(){
+            return 123;
+        }
+        var num = sum();
+
+        function n(target){
+            return target;
+        }
+        var num = target('123');
+
+typeof() 也是一种函数返回的方式，例：
+
+    function sum(){
+            typeof 123;
+        }
+        var num = sum();
+
