@@ -1,20 +1,14 @@
 ---
 layout: post
-date: 2017-06-30
+date: 2019-08-23
 title: margin塌陷和margin合并
 categories: blog
 tags: [CSS]
 ---
 
-鉴于现在到了期末阶段了，博主也要开始“预习”，可能不会每天都更新博客，大家有什么不懂的可以留言，我尽量隔天更新吧。
-
-好，今天来继续给大家讲讲css的一些重要问题，也是一些重要的bug。
-
-由浅入深。我们先来介绍一下css的盒模型。
+今天楼上的装修声一样的吵啊，还没睡着就又被吵得不行，今天下雨，实在不想去肯德基了。今天的复习内容是关于CSS的一些典型的bug。那我们先从一些概念入手，然后发现问题，解决问题。
 
 ## css盒模型
-
-首先来了解一些概念。
 
 1.content：内容区，大小为width x height。
 
@@ -26,7 +20,7 @@ tags: [CSS]
 
     padding:50px 20px 30px;(顺序为 上 左右 下）;
 
-也可以通过 padding-left 这样的形式进行单独得设定。
+也可以通过 padding-left 这样的形式进行单独的设定。
     
 
 3.border：边框。
@@ -35,7 +29,7 @@ tags: [CSS]
     border-style:solid;
     border-color:balck;
 
-style表示的是边框的样式为实线，颜色为黑色，边框粗细为15像素，border设定粗细的时候顺序问题跟padding是一样的。另外有一点要注意的是，当分别为border设定粗细的时候，要这样写：
+这里有一点要注意style表示的是边框的样式为实线，颜色为黑色，边框粗细为15像素，border设定粗细的时候顺序问题跟padding是一样的。另外有一点要注意的是，当分别为border设定粗细的时候，要这样写：
 
     border-left-width:90px;
     
@@ -43,9 +37,7 @@ style表示的是边框的样式为实线，颜色为黑色，边框粗细为15�
 
 4.margin：外边距，设定盒子与盒子之间的距离。可以单独设置。
 
-最后来一张图进行了解。
-
-<img src="http://os310ujuc.bkt.clouddn.com/clipboard.png">
+那么当我们设置完成，这个结构就是一个又一个长方体嵌套，最里面是content,然后是padding，border，最后是margin。其实当设置一个盒子的时候，打开这个页面右键检查，就能看到盒子的结构图了，这个结构很重要，希望大家能记住。
 
 ok,那么现在就开始讲一讲一个盒子究竟包含的哪些部分呢？
 
@@ -61,82 +53,61 @@ ok,那么现在就开始讲一讲一个盒子究竟包含的哪些部分呢？
     
 运行以上代码，我们可以看到，变红色是padding和content，border为黑色。现在的浏览器都是这样的样式，要注意的是，在IE6设置的话，border也是红色。这是一个很重要的兼容性例子。大家平常开发的时候就要注意了。
 
-## margin塌陷问题和合并问题。
+## margin塌陷问题和合并问题
 
 到目前为止，css都有一个很大的bug没有被修复，它们就是著名的margin塌陷和margin合并。
 
 ### margin塌陷 
-
-先来一段代码。
-
-       <div class='father'>
-        <div class='son'>
-        </div>
-        </div>
+举个例子：
+设置两个盒子，大盒子里有小盒子
+        #wrapper{
+            width:500px;
+            height:500px;
+            background: red;
+            margin-top: 10px; 
+            margin-right: 10px;
         
-     .father{
-       width:200px;
-       height:200px;
-       background:yellow;
-       }
-       .son{
-       width:100px;
-       height:100px;
-       background:green;
-       }
+        #box1{
+            width:100px;
+            height:100px;
+            background: red;
+            margin-top: 10px;
+            margin-right: 10px;
+            float:left;
+            } 
+        }
+设置 margin-top的时候，如果小于大盒子的margin-top，小盒子不动。大于大盒子的margin-top，会连带大盒子一起往下移。
+    
 
-现在显示为
-
-<img src="http://os310ujuc.bkt.clouddn.com/bug1.png">
-
-当我们在son里面写上这段代码之后。
-
-    .son{
-    width:100px;
-    height:100px;
-    background:green;
-    margin-top:50px;
-    }
-    
-我们惊奇地发现，既然变成这样：
-
-<img src="http://os310ujuc.bkt.clouddn.com/bug.PNG">
-
-我们在捋一捋是什么个情况，我们给子元素加上绿色，父元素为黄色，理论上我们给子元素设置margin-top，绿色顶部应该跟黄色会产生一段距离，但是现在的问题就是，子元素带动父元素一起移动了50px。这就是margin塌陷问题。在垂直方向上，给子元素设定margin的时候不按正常规则来进行，其实这里是跟父元素和子元素的margin大小有关系，假如我们在父元素上也设置一个margin-top，当子元素margin-top小于父元素设定的值的时候，子元素是不会动的。只有大于父元素设定的时候才会带动父元素一起动。
-
-这里还有一个例子就是body本身也会存在margin塌陷的问题，这个究竟是什么问题呢，这我就不展开了，大家要是有兴趣可以自行gooooooole。也可以留言哈。
 
 #### 解决方法
 
-当然，出现问题，肯定会有方法解决的。解决margin塌陷的问题，我们要利用bfc-block format content进行解决。
 
-什么是bfc呢？简单来说，每一个盒模型都会有它们默认的一套渲染机制，就是我们平常用的都属于它们的默认渲染机制，在这套机制里面，会存在margin塌陷的问题，这时候，我们需要利用另一套渲染机制来进行渲染，这就叫做 利用触发bfc了。
-**那怎样触发bfc呢？
-
-****1.overflow：hidden；
-2.position：absolute；
-3.float浮动等。
-
-对于上述例子，只要我们在父级father触发bfc即可，操作方法如下。
-
-    .father{
-       width:200px;
-       height:200px;
-       background:yellow;
-       overflow:hidden;
-       }
-   
-操作完成之后，我们在重新进入以下页面，尽可以看见正常位置的son了。
-
+触发bfc机制
 --------------------------------------------------------------
 
-吃饱饭继续来完成今天的内容。讲完margin塌陷之后，我们就要讲一下margin合并了。
 
 ## margin合并
 
-margin合并讨论的就不是父子结构了，讨论的是兄弟结构。简单来说，就是当两个并列的结构，一个设定了margin-bottom,另外一个设定了margin-top，这两个
-取的是更大的一个，它们并不会产生更大的间距。这时候我们需要在其中一个兄弟元素中套上一个父级标签，对父级标签触发bfc即可解决这个问题。但是通常
-我们不会通过这种方法解决margin合并的问题，因为这样会带来其他的反效果。我们会通过通过再次设定margin的方法解决这个问题。
+margin合并讨论的就不是父子结构了，讨论的是兄弟结构。这时候我们需要在其中一个兄弟元素中套上一个父级标签，对父级标签触发bfc即可解决这个问题。但是通常我们不会通过这种方法解决margin合并的问题，因为这样会带来其他的反效果。我们会通过通过再次设定margin的方法解决这个问题。
+
+设置两个盒子，两个盒子的垂直方向上的margin-top或是margin-bottom谁大，两盒子距离就为多少
+        #box1{
+            width:100px;
+            height:100px;
+            background-color: aqua;
+            margin-bottom: 10px; 
+            margin-left: 10px;
+       
+       
+        #box2{
+            width:100px;
+            height:100px;
+            background: red;
+            margin-top: 10px; 
+            margin-right: 10px;
+        }
+
 
 ## 层模型
 

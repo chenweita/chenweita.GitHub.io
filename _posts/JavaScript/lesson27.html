@@ -1,0 +1,37 @@
+HTTP无状态协议，无状态指的是，当我们建立了一个连接以后，可以进行数据交互了，当这个连接一断开，服务器跟浏览器之间就不存在任何联系了。这个时候，当我们
+cookie：是由服务器生成的，发送给浏览器，（服务器告诉浏览器设置一下cookie）设置在响应报文里，浏览器会将cookie以key/
+value保存到某个目录下的文本文件内，下次请求同一网站，就发送该cookie给服务器（前提是浏览器设置为启用cookie）
+可以清除
+就是一个小型文件（浏览器对其内存大小是有限制的--用来记录一些信息 ）
+
+
+内存大小：
+特点：
+满足同源策略
+document.domain 让页面属于这个基础域名之下s
+
+重要信息不能用
+QQ邮箱：第二次访问浏览器登账号，返回了一个id
+response header 
+set-cookie：id= "223";
+cookie:id="223";
+服务器拿到这个id，对比
+也就是说当我们第二次访问的时候就会有cookie值，但真的有吗，实际上是没有的，因为cookie值有一个保质期
+
+var oDate = new Date;
+document.ccokie = 'name = sss';
+
+var oDate = new Date();
+console.log(oDate.getDate())
+oDate.setDate(oDate.getDate()+1);
+console.log(oDate);
+console.log(document.cookie);
+document.ccokie = 'name = sss';expire=' + oDate;
+33.59
+保质期：session
+谷歌如果不是HTTP协议，默认cookie没用
+
+
+拖拽方块，第二次打开，方块在原来位置
+
+bind(window)指向window
