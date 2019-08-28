@@ -13,7 +13,7 @@ tags: [Javascript]
 js作为一部分首次出现是在1996年，最初设计目标是为了改善网页用户体验，作者名字叫做Brendan Eich。刚开始Javascript并不叫作这个名字，而是叫做livescript，后来才改了这个名字。2001年时，IE6首次实现对js引擎的优化和分离。2008年Google Chrome又进一步优化JS引擎，能把js代码直接变成机械码来执行，最后Firefox TraceMonkey JeagerMonkey频繁执行优化，就发展成了今天的Javascript。
 
 
-  #  js特点：
+#  js特点：
 
   每一门编程语言都有其特点，那Js的特点是什么呢？
 
@@ -21,7 +21,7 @@ js作为一部分首次出现是在1996年，最初设计目标是为了改善�
 
   - 单线程
 
-   C C++ ruby是静态语言，而php phpthon Javascript
+   C C++ ruby是静态语言，而php phpthon Javascript不是。
 
    Javascript弥补静态语言的不足，先通过Java.c虚构器-->class-->jvm解释执行，先编译后解释
 
