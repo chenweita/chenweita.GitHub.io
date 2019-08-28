@@ -1,0 +1,200 @@
+---
+layout: post
+title: JavaScript运算符
+date: 2019-08-27
+categories: blog
+tags: [JavaScript]
+---
+
+# 运算符：
+
+
+ 1."+"  
+ 
+    字符串相加-->拼接
+
+    字符串+数字或者任何数据类型——>字符串
+
+    数字默认浮点型 最多显示前16后17
+
+    注意：I.1+1+a+1+1--->2a11
+    II.var a = 1/0;  Infinity
+    III.a=Infinity;b=Infinnity+1;
+    a-b=NaN;(not a number)
+    NaN是计算不出的值 0/0
+
+2."-",",","/","%","=","()"  
+
+5%3 取余
+
+0%2 0 
+
+ 3.优先级 "="最弱，"()"优先级较高 
+
+ 先计算后赋值
+
+ 4."++" "--" "+=" "-=" "/=" "*=" "%="  
+
+a++；-->a=a+1;
+
+a++先运算后++ 
+
+++a 先++后运算
+
+例：   
+        a=1;
+        b=2;
+        c=a+b++;
+先运算后++  
+
+c = a + b后b++
+
+a*=2；-->a=a*2
+
+ 5.比较 ">" "<" "==" ">=" "<=" 
+
+ "!=" 比较结果为boolean值
+
+6.逻辑运算符 "&&" "||" "!" 
+
+运算结果为真实的值
+
+7.被认定为false的值 
+
+undefined,null，NaN,"",0,false
+
+（1）if  
+         var score = parseIntwindow.prompt('input') 
+
+输入数字
+
+if(score>90&&score<100){
+}
+
+这样写显然是不对的，并列条件不能像C++一样连着写
+
+
+        if{
+
+        } else if{
+
+        }  
+
+
+如果if不成立，执行else if 如果成立则不执行。提高效率
+
+
+
+        if(1>2){
+        document.write('a')
+        }
+
+
+相当于1>2&&document.write('a')
+
+（2）for循环
+
+        for(1;2;3)
+        {
+        执行语句
+        }
+大括号里边代表执行顺序，
+先执行1，
+然后判断条件2，if（2）
+成立，执行 执行语句，
+执行3,
+再判断条件2,
+成立，执行执行语句,
+执行3,
+再判断条件2,
+如果不成立，结束循环
+
+123不一定都要写东西，i--写中间也可以
+
+（3）while（）{}
+
+当条件成立，执行循环体
+
+        var key=true，i=0；
+        while(key){
+        i++;
+        if(i>100){
+                key=!key;
+        }
+        document.write(i + " ")
+        }
+(4)do{}while
+这个其实很少用，{}里填的是执行语句
+
+(5)
+swtich(条件){
+    case 1(情况):
+        document.write('1');
+    case的类型不统一，挨个执行，如果要跳出，就需要break
+
+break 能跳出任何循环，但也只能用在循环里。
+
+下面有一些关于循环的小题以及答案，大家可以尝试写写然后对一下。
+
+1.求2^n;
+        var n = window.prompt('input');
+        var mul=1;
+        for(var i = 0;i < n;i++){
+            mul*=2;
+        }
+        document.write(mul);
+
+
+2.计算n的阶乘
+        console.time()
+        var n = window.prompt('input');
+        var n = 3;
+        var mul=1;
+        for(var i = 1;i <= n;i++){
+            mul *= i;
+        }
+        console.timeEnd()
+        document.write(mul);
+        console.log(mul)
+
+3.斐波那契数列
+        var n = window.prompt('input');
+        var f = 1,s = 1,t = 0;
+        for(var i = 0;i < n - 2;i++){
+            t = f + s;
+            f = s;
+            s = t;
+        }
+        console.log(t)
+
+4.编写一个程序，输入一个三位数，例:输入456,反向输出654
+        var n = window.prompt('input')
+        var a,b,c,d;
+        a=n%100%10;  //gewei
+        b=(n%100-a)/10;  //shiwei
+        c=(n-a-b*10)/100; //baiwei
+        d=a*100+b*10+c;
+
+        var s1 = new String((n%100 - n%100%10)/10)   //不用a,b,c 
+        var s2 = new String((n - n%100%10 - (n%100 - n%100%10)/10*10)/100)
+        var s3 = new String(n%100%10)
+        console.log(s3+s1+s2)
+        
+
+5.输入三个数，输出最大的数
+        var a = window.prompt('input')
+        var b = window.prompt('input')
+        var c = window.prompt('input')
+        if(a>b){
+            if(a>c){
+                console.log(a)
+            }else{
+                console.log(c)
+            }
+        }else{
+            if(b>c){
+                console.log(b)
+            }else{
+                console.log(c)
+            }
+        }
