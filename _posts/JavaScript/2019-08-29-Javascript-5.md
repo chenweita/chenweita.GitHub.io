@@ -1,3 +1,4 @@
+---
 layout: post
 date: 2019-08-29
 title:  JavaScript的类型转换
@@ -18,7 +19,9 @@ tags: [JavaScript]
 
 ## typeof 运算符
 
-typeof()六种数据类型：
+我们都知道，未经声明访问会报错，但typeof(a)不会报错
+
+typeof()六种数据类型：Number,String,Boolean,undefined,null,object
 
         typeof(1); //Number
         typeof(abc); //String
@@ -55,7 +58,7 @@ true，abc，undefined，NaN，""进行转换后，结果是什么。
 
 这个跟上面的Number有些相似，但它的要求更高，它致力于将别的类型转换为整数类型的数字，所以字符串123变成整数类型123。
 
-"abc"的结果也是NaN；ture，false，null，undefined NaN
+"abc"的结果也是NaN；ture，false，null，undefined结果是NaN
 
 如果是"123abc"转换的结果是什么？parseInt()会从第一位数字开始看，直到最后一位数字，截止于非数字类型，然后返回数字123
 
@@ -103,7 +106,7 @@ radix的意思是进制，取值范围为2-36。
 
 undefined,空串，0，null的结果都是false
 
-abc：1；
+
 
 这里有一个问题，如何将11110000二进制转换为八进制：
 
@@ -111,96 +114,151 @@ abc：1；
         document.write(num.tostring(8));
 
 ### 隐式类型转换
+
+只有弱数据语言才有隐式类型转换。
+
 (1)isNaN()
 
-        isNaN(NaN) ture；
-        var a = 2 == 1;
-        doncument.write(a); //false
+从字面上看，这个的意思是是否等于NaN，是的话，返回true，不是的话，返回flase。
 
-        var a = undefined == undefined;
-        doncument.write(a);  //ture
+                var a = 2 == 1;
+                doncument.write(a); //false
 
-        NaN == NaN;  //false
+                var a = undefined == undefined;
+                doncument.write(a);  //ture
 
-NaN非常特殊，NaN不等于任何东西，包括他自己。
+                NaN == NaN;  //false
 
-"123" false "abc" ture 
-var a = "abc" ;
-doncument.write(a);  ture
-系统会先调用一个Number(),判断为NaN，所以结果为ture
-123abc 转化不了 NaN
-求NaN等于NaN
-doncument.write("NaN"="NaN");  ture字符串只要长得相同就行了
-null 0；false
-(2).++/--;+/-;
-var a=123;
-a++;
-document.write(typeof(a)); number
-字符串123； 先Number(a)后++
-document.write(typeof(a++));
-先typeof后a++
-var a=123;
-document.write(a++ + ":"+typeof(a)); 
-先打印后++
-但是无论++在前在后，一定会先转化为Number
-"abc" NaN+1 NaN
-var a="abc";
-document.write(typeof(+a)); number
-var a=-"abc";
-document.write(typeof(a)); number
-(3).+
-var a=1+"2"; 先转换为字符串类型
-(4).-*/%
-var a=1-"2"; 先转换为number类型
-(5).&&||!
+我们先看看这些语句，第一个是false没错吧，第二是true，第三很震惊吧，NaN居然不等于NaN，是的，NaN非常特殊，NaN不等于任何东西，包括他自己。
+
+
+                var a = "abc" ;
+                doncument.write(a);  //ture
+                var a = "123" ;
+                doncument.write(a);  //false
+                var a = "123abc" ;
+                doncument.write(a);  //ture
+
+这些的结果又是什么呢，系统会先调用一个Number(),第一个我们之前说过，系统转换不了的它会返回NaN，系统会判断是否为NaN，所以第一个结果为ture，第二个字符串123转换为数字123，肯定不相等，false，第三个123abc，转换不了，还是NaN，所以true。
+
+那什么情况下，NaN才会等于NaN呢？
+
+                doncument.write("NaN"="NaN"); 
+
+这个的结果就是ture，因为不是数字比对，字符串只要长得相同就行了
+
+null和0也不等于NaN
+
+(2)++/--;+/-;
+
+                var a="123";
+                a++;
+                document.write(typeof(a)); 
+
+字符串123无法进行++，所以系统先Number(a)后++，所以类型是number
+
+                document.write(typeof(a++));
+
+先typeof后a++，但是无论++在前在后，一定会先转化为Number
+
+                var a="abc";
+                document.write(typeof(+a)); 
+                var a=-"abc";
+                document.write(typeof(a));
+
+结果都是number
+
+
+(3)+
+
+                var a = 1+"2"; 
+
+之前我们说过数字+字符串，相当于拼接，其实就是隐式类型转换，先转换为字符串类型，后拼接。
+
+(4)-，*，/，%
+
+                var a = 1-"2"; 
+
+如果上一道题变成-了呢，结果是什么，如果是-的话，隐式类型转换就变成了Number(),所以结果是-1
+
+(5)&&，||，!
+
 先转换为boolean值
-(6).<> <= >= 先转换为boolean值
-var a=1>"2"; 一侧是数字另一侧转换为数字后比较
-都是字符串 比较ASC值
-var a=undefined，null==0; 无论是大于等于小于等于或是等于都不成立
-var a=undefined==null；  ture 只有转换成布尔值才相等
-(7).== != 先转换为boolean值
-var a=1！="1"; false 
-只有弱数据语言才有隐式类型转换
+
+(6)<>，<=，>=
+
+先转换为boolean值
+
+                var a=1>"2"; 
+
+一侧是数字另一侧转换为数字后比较。
+
+如果都是字符串 比较ASCII值
+
+                var a = undefined,null==0; 
+
+无论是大于等于小于等于或是等于都不成立
+
+                var a = undefined == null;  
+
+ture 只有转换成布尔值才相等
+
+(7).==,!= 
+
+先转换为boolean值
+
+                var a = 1！="1";  //false 
+
+
 === 绝对等于 不发生隐式类型转换，必须一样
-var a=NaN ===NaN； false 
+
+                var a = NaN===NaN; //false 
 
 
-例题：var a=("11"*3+"2")/2; 注意数字+字符串 连着
-先33，后332，最后166
+例：
 
-var str=false+1；
-document.write(str) 1
+                var a=("11"*3+"2")/2; 
 
-var str=false==1；
-document.write(str) false
-   undefined   -1+NaN+"" 字符串的NaN
-if(typeof(a)&&-ture+ (+undefined)+""){
-document.write('打印') 打印
-}
-未经声明访问 报错 但typeof(a)不会报错
-typeof(typeof(123)) 最后结果是字符串
+注意数字+字符串是拼接，先33，后332，最后结果为166
 
- ture+false=1|| 直接停，不打印
-!!" " + !!" " - !!false||document.write('打印')
-打印不了
+                var str=false+1；
+                document.write(str) 
 
-练习：
-alert(typeof(a));   string          
-alert(typeof(undefined));    undefined  
-alert(typeof(NaN));  undefined
-alert(typeof(null));  object
-var a="abc123";
-alert(typeof(+a));  Number NaN
-alert(typeof(!!a));  bollean 
-alert(typeof(a+""));  string
-alert(typeof(1=="1"));  bollean
-alert(typeof(NaN=="NaN"));  bollean
-alert(typeof(NaN==undefined));  bollean
-alert(typeof("11"+11));1111
-alert(typeof(1==="1"));  bollean false
-alert(paresInt("123abc")); 整型数字 123
-var num=123.123; 
-alert(num.toFixed(3)); 保留3位有效数字，且四舍五入
-typeof(typeof(a)); ！！！！string
+false转换为0，结果是1
+
+                var str=false==1；
+                document.write(str) //false
+
+
+                if(typeof(a)&&-ture+ (+undefined)+""){
+                document.write('打印') 
+                }
+
+最终结果是打印。
+
+
+                typeof(typeof(123)) //最后结果是字符串
+
+
+-----
+
+
+这里有一些练习，大家做完看看对不对吧：
+                alert(typeof(a));   //string          
+                alert(typeof(undefined));    //undefined  
+                alert(typeof(NaN));  //undefined
+                alert(typeof(null));  //object
+                var a="abc123";
+                alert(typeof(+a));  //Number NaN
+                alert(typeof(!!a));  //bollean 
+                alert(typeof(a+""));  //string
+                alert(typeof(1=="1"));  //bollean
+                alert(typeof(NaN=="NaN"));  //bollean
+                alert(typeof(NaN==undefined));  //bollean
+                alert(typeof("11"+11));     // 1111
+                alert(typeof(1==="1"));  //bollean false
+                alert(paresInt("123abc")); //整型数字 123
+                var num=123.123; 
+                alert(num.toFixed(3)); //保留3位有效数字，且四舍五入
+                typeof(typeof(a));     //string
  
