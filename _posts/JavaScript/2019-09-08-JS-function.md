@@ -118,8 +118,7 @@ tags: [JavaScript]
         
         var test = function () ;         // 函数表达式
 
-这样，我们可以把函数声明转化成表达式。
-
+这样，我们可以把函数声明转化成表达式。那什么是表达式呢？单独一个数，有计算，一个变量都可以是表达式。
 1.+function test(){ } +号运算符，可以将函数声明转为表达式，这样就可以执行了。
 
 + function test() { }()
@@ -217,6 +216,48 @@ tags: [JavaScript]
               document.write(f);
 
 最后注意一点就是 if语句定义函数是不允许的，但是var在if里面仍然是可以提升的。
+
+## 闭包作用的第四点 私有化变量
+
+鉴于之前讲闭包的作用的时候，没有讲到构造函数，那么今天来不会一个闭包的作用，就是私有化变量。来看一下代码：
+
+        function Deng(){
+            var prepareWife = "xiaozhang";
+            var obj = {
+                name : "Laodeng",
+                age : 40,
+                sex : "male",
+                wife : "xiaoliu",
+                divorce : function () {
+                    this.wife = delete this.wife;
+                },
+                getMarried :function () {
+                    this.wife = prepareWife;
+                },
+                changePrepare : function (someone) {
+                preparewife = someone;
+                    },
+                sayMywife : function (){
+                    console.log(this.wife);
+                }
+                return obj;
+            }
+        deng = Deng();
+        
+
+我们可以通过操作一下看看什么情况，有什么关于闭包的点。
+
+                deng.sayMyWife()         //"xiaoliu"
+                deng.divouce()           //undefined (没有返回值）
+                deng.sayWife()           //已经删除
+                deng.changePrepare('xiaoxiaozhang')   //undefined (函数没有返回值）
+                deng.getMarried()        //undefined
+                deng.sayMyWife()         //"xiaoxiaozhang"
+                deng.prepareWife         //undefined
+        
+大家在这段代码应该没怎么看出来，现在给大家讲解一下，为什么称之为私有变量。
+
+首先，我们手动地查询prepareWife的时候，发现是undefined，因为这个是函数里面的变量，不在全局作用域里，所以我们访问不了，但是，一系列的操作都是围绕prepareWife来进行的，它们都可以正常访问这个变量，所以，像这种只能通过与这个变量产生闭包的方法，属性，才能给对那个变量进行访问，所以，我们就称之为，私有化变量，我们可以通过定制接口（各种方法），来对变量的安全程度进行设置。
 
 ----
 好了今天就更新到这了，我们明天见。
