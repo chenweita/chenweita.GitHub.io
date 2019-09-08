@@ -1,7 +1,7 @@
 ---
 layout: post
 title: JavaScript闭包深入理解及其作用与解决方法
-date: 2017-09-08
+date: 2019-09-08
 tags: [JavaScript]
 ---
 
