@@ -1,8 +1,9 @@
 ---
-layout: post;
-title: ES6d的解构;
-tags: [ES6];
-date: 2019-09-24;
+layout: post
+title: ES6d的解构
+date: 2019-09-24
+tags: [ES6]
+
 ---
 
 我们首先说一下解构为什么产生，它是为了使数据访问更便捷。
