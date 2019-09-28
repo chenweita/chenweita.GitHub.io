@@ -1,7 +1,7 @@
 ---
-layout: post
-title: ES6d的解构
-tags: [ES6]
+layout: post;
+title: ES6d的解构;
+tags: [ES6];
 date: 2019-09-24;
 ---
 
