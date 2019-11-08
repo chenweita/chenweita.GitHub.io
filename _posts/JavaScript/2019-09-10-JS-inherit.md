@@ -9,7 +9,7 @@ tags: [JavaScript]
 
 ## 继承发展史
 
-第一种继承形式:
+第一种继承形式:（原型链继承）
 
                 Grand.prototype.lastName = "abc";
                 function Grand() {
@@ -22,10 +22,11 @@ tags: [JavaScript]
                 Person.prototype = foo;
                 function Person() { }
 
-        
+        特点：基于原型链，既是父类的实例，又是子类的实例
+        缺点：无法实现多继承
 这种继承方式太麻烦了，而且还不美观，于是一开始就被pass掉了。
 
-第二种继承方式：
+第二种继承方式：（构造继承）使用父类的构造函数来增强子类实例，等于是复制父类的实例属性给子类
 
         function Factory(name,age){ 
             this.name = name;
@@ -37,20 +38,28 @@ tags: [JavaScript]
             //return this;
         }
         var person = new Person('age',123);
-        
+        特点：可以实现多继承
+ 缺点：只能继承父类实例的属性和方法，不能继承原型上的属性和方法
+
 这种方式本质上不叫继承，因为他是借用call和构造函数，把工厂函数的this指向改变为自己而已，而且访问不了原型的原型。
 
-第三种继承方式：
+第三种继承方式：（组合继承）
 
                 function inherit(origin,target){
                     target.prototype = origin.prototype;
+                    Target.prototype.constructor = Target;
                 }
                 Person.prototype.lastName = "Leung";
+                
                 function Person{ };
                 function Son(){ }
                 inherit(Person,Son);
         
-这种方式就是利用共享原型来进行继承，但是这还是有个缺点就是，当我们给Son的原型上添加属性的时候，发现，Person的原型也会发生同样的变化，这就是我们不想要的，于是就产生了第四种方式了。
+
+ 通过父类构造，继承父类的属性并保留传参的有点，然后通过将父类实例作为子类原型，实现函数复用
+ 特点：可以继承实例属性/方法，也可以继承原型的属性和方法
+ 缺点：调用了两次父类的构造函数，生成了两份实例，
+ 这种方式就是利用共享原型来进行继承，但是这还是有个缺点就是，当我们给Son的原型上添加属性的时候，发现，Person的原型也会发生同样的变化，这就是我们不想要的，于是就产生了第四种方式了。
 
 
 第四种继承方式：圣杯模式 
@@ -63,6 +72,7 @@ tags: [JavaScript]
             Target.prototype = new F();
         }
         Person.prototype.lastName = "Steven";
+
         function Person () { }
         function Son() { }
         inhert(Person, Son);

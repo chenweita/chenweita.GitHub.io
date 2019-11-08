@@ -182,12 +182,17 @@ tags: [JavaScript]
          function test() {
              var arr = [];
              for(var i = 0; i < 10; i++){
-                (function (j) {
+               arr[i] =  (function (j) {
                     console.log(j);
                     }(i))
                  }
                  return arr;
              }
+             var demo = test();
+          for(var j = 0; j < 10 ;j ++ ){
+              demo[j]();
+              }// 10 * 10 
+          
 
 利用立即执行函数，每次访问的i都是不一样的值，这样就可以打印出0-9了。
 
@@ -216,6 +221,13 @@ tags: [JavaScript]
               document.write(f);
 
 最后注意一点就是 if语句定义函数是不允许的，但是var在if里面仍然是可以提升的。
+
+e: 1--> function e(){} -->arguments[0] = 2 --->2
+b: if里var是可以提升的，所以b是undefined
+c:if里不能定义函数，所以是undefined
+a:打印语句前面有一a = 10
+a:全局的a，结果是100
+f:这里有前面一个很重要的知识点，就是变量未经声明就赋值，会被挂在全局对象window上，因此在函数外部也可以访问到f的值123，这并不是闭包
 
 ## 闭包作用的第四点 私有化变量
 

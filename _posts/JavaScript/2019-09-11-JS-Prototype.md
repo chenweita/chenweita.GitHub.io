@@ -15,8 +15,7 @@ tags: [JavaScript]
         Person.Prototype.sex = "male";
         function Person() { }
         var person1 = new Person();
-
-        person1.name    //"Steven"
+        person1.name    //"huahua"
         person1.age     // 20
         person1.sex     //male
         person1         //Person>>>__proto__:Object(原型)
@@ -149,7 +148,7 @@ call和apply致力于当构造函数创建对象的时候，改变this的指向�
             Person.call(obj);
             console.log(obj);  
             // Object { name : "abc",age :123 }意思是obj是一个对象，里面的属性就是Person里所有的。
-可以看到，obj原来是空的，但是当call指向obj的时候，Person中的this指向就变成了obj了，所以最后就是往obj中添加对象的属性。?
+可以看到，obj原来是空的，但是当call指向obj的时候，Person中的this指向就变成了obj了，所以最后就是往obj中添加对象的属性。
 
 如果有参数，那么第一个参数就是指向，第二个参数就是传的函数参数。
 

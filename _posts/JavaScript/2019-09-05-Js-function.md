@@ -57,7 +57,7 @@ JavaScript引擎解析语句的时候，是从左至右解析的，赋值的时�
 
 而他们又有一些顺序，函数提升覆盖变量声明提升，执行变量赋值覆盖函数。
 
-根据上面的代码，首先，var a ；会提升到函数顶部，但是还没完事，function又被提升了并覆盖，因此当地一句执行的时候，打印出的就是function那句，然后到a赋值了，于是a赋值之后，有吧function给覆盖了，所以最后打印出的是123。
+根据上面的代码，首先，var a ,会提升到函数顶部，但是还没完事，function又被提升了并覆盖，因此当地一句执行的时候，打印出的就是function那句，然后到a赋值了，于是a赋值之后，有吧function给覆盖了，所以最后打印出的是123。
 
 于是，又有同学有问题了，最后不是有function语句吗？为什么不是函数？
 
@@ -67,13 +67,13 @@ JavaScript引擎解析语句的时候，是从左至右解析的，赋值的时�
 
 ## 预编译正讲
 
-好了，有了以上的铺垫之后，可以正式将预编译了。
+好了，有了以上的铺垫之后，可以正式讲预编译了。
 
 首先预编译发生在执行的前一刻，它会有以下几步：
 
         第一步：产生执行上下文的对象（activition object）简称AO ，它存在于系统内部。
 
-        第二步：找函数中的变量声明，找函数声明，直接提到函数顶部，并赋值undefined。
+        第二步：找函数中的变量声明，找函数声明，直接提到函数顶部，并给变量赋值undefined。
 
         第三步：函数中的形参和实参相统一，就是赋值。
 
@@ -82,7 +82,7 @@ JavaScript引擎解析语句的时候，是从左至右解析的，赋值的时�
 我们利用一个例子来进行讲解：
 
         function fn(a){
-            console.log(a);        // undefined
+            console.log(a);        // function(){}
             var a = 123;
             console.log(a);        // 123
             function a(){ }      
@@ -100,7 +100,7 @@ JavaScript引擎解析语句的时候，是从左至右解析的，赋值的时�
         AO = {
 
         a : undefined---- 1 ----function a () {} -----123 (后面的函数声明，因为已经被提升，执行阶段不再声明，所以最后值是123）
-
+            先undefined后传参，函数表达式，赋值
         b : undefined---- function () { }
 
         d : function d (){}
@@ -124,11 +124,11 @@ JavaScript引擎解析语句的时候，是从左至右解析的，赋值的时�
 
      function bar(){
         foo = 10; 
-        function foo(){ {;
+        function foo(){ };
         var foo = 11;
         return foo;
         }
-        console.log(bar ());     //foo被赋值为11，最后才被return!!
+        console.log(bar());     //foo被赋值为11，最后才被return!!
 
 这就是整个预编译的过程。
 
