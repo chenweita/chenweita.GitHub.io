@@ -25,7 +25,7 @@ reg.lastindex：很重要 待会讲。
 
 2.reg.test()：检测是否跟目标正则匹配。
 
-3.str.match(): 返回匹配的字符串。 返回的是一个类数组。（只展示索引位，数组方法splice），如果有g属性，就会额外返还几个属性，第一个属性是匹配到的字符串，第二个是第一个字表达式匹配到的第一个字符串，第三个匹配到第二个字符串，，index属性就是匹配位置。input就是该字符串。如果没有g属性就只能有匹配到的字符串。
+3.str.match(): 返回匹配的字符串。 返回的是一个类数组。（只展示索引位，数组方法splice），如果有g属性，就会额外返还几个属性，第一个属性是匹配到的字符串，第二个是第一个字表达式匹配到的第一个字符串，第三个匹配到第二个字符串，index属性就是匹配位置。input就是该字符串。如果没有g属性就只能有匹配到的字符串。
 
 
 4.str.serach(): 检测匹配到的字符串的索引.可以填字符串，也可以填正则。
@@ -34,7 +34,7 @@ reg.lastindex：很重要 待会讲。
   
   str.split(/\d{0}/);//空截取
   
-6.str.replace: 如果直接写字符串，没有全局找的功能，只能把第一个匹配到的东西进行替换。填正则表达式，利用g就可以进行全局匹配。
+6.str.replace(a,b): 用b代替a，如果直接写字符串，没有全局查找的功能，只能把第一个匹配到的东西进行替换。填正则表达式，利用g就可以进行全局匹配。
 
 	var str = "abcda";
 	str.replace("a","s") // "sbcda"
@@ -45,7 +45,7 @@ reg.lastindex：很重要 待会讲。
 	var reg = /(\w)\1/;
 	var str = "bb";
 	var str1 = "aaaabbbbbcccc";
-	var reg2 = /(\w)\1+/g;
+	var reg1 = /(\w)\1+/g;  
 	reg.test(str) ;// true;
 	reg2.test(str1); // true
 
@@ -59,12 +59,12 @@ reg.lastindex：很重要 待会讲。
 2.
 	var str = "aabb";
 	var reg = /(\w)(\w)/g;
-	str.replace(reg,"$2$2$1$1") //"bbaa";
+	console.log(str.replace(reg,"$2$1")) //"bbaa";
 	
 3.
 	var str = "abbba";
-	var reg = /(\w)(\w)\2{2}\1/g;
-	str.replace(reg,"$2$1$1$1$2");
+	var reg = /(\w)(\w)\2{2}\1/g;//第二个子表达式再用两次
+	console.log(str.replace(reg,"$2$1$1$1$2"));
 	
 注意反向引用只能反向引用子表达式。$1表示第一个子表达式，$2表示第二个子表达式，如此类推。
 
@@ -73,10 +73,28 @@ replace方法第二个参数还可以填一个function() ，它会自动给我�
 例二：将字符串转化形式，the-first-name转化为小驼峰式。（toUpperCase()转大写）
 
 	var str = "the-first-name";
-	var reg = /-(\w)/g
-	str.replace(reg,function ($,$1){
-		return $1.toUpperCase()
-	}))
+	var reg = /-(\w)/g;
+	console.log(str.replace(reg,function($,$1){
+        return $1.toUpperCase()
+    })); //theFirstName
+
+-------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## exec方法（ 执行 完成 履行）
@@ -106,6 +124,7 @@ reg.exec(str): 如果没有g，跟match是一样的。如果有g属性，它就�
 	})
 
 "?:"告诉引擎，不要将后面的内容记录为表达式。
+
 
 正向预查：添加一个修饰条件，必须符合一定条件才能被匹配到。
 	
