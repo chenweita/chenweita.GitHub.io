@@ -1,6 +1,6 @@
 ---
 layout: post
-date: 2019-08-23
+date: 2019-11-02
 title: margin塌陷和margin合并
 categories: blog
 tags: [CSS]

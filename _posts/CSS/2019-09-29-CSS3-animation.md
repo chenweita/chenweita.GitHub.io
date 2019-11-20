@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CSS3动画
+title: CSS3动画基础
 data: 2019-09-29
 tags: [css3]
 ---
