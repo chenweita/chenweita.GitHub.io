@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+
+
+
+// for in 怎么遍历循环？
+// 4.	undefined会触发函数参数的默认值。
+
+// 	[1, undefined, 3].map((x = 'yes') => x);// [ 1, 'yes', 3 ]
+for (let elem of ['a', 'b'].values()) {
+	  console.log(elem);
+	}
+	// 'a'
+	// 'b'
+    9.	    var x = 1;
+    function foo(x, y = function() { x = 2; }) {
+    x = 3;//即使没有声明，也是不能改变全局的x
+    y();
+    console.log(x);
+    }
+
+    foo() // 2
+    x // 全局的x  =  1
+
+这个时候，x就是指向的参数作用域里的x，这个时候的x就是2，因为y这个时候执行了，x就是2.但是全局里面的还是1.
+
+
+function foo(){
+        setTimeout(){()=>{
+            console.log("id:",this.id);
+        },1000};
+    }
+
+    var id = 123;
+    foo.call({id: 321});
+
+    </script>
+</body>
+</html>

@@ -11,36 +11,36 @@ tags: [css3]
 
 transform  可以实现元素的形状、角度、位置等的变化。属性值：
 
-1.rotate(); 以x/y/z为轴进行旋转，默认为z
+1.rotate(); 以x/y/z为轴进行旋转，默认为z，参数填的是角度，例如3deg
 
-	rotatex(), rotatey(), rotatez(), rotate3d(x, y, z, angle) x, y, z --->
+	rotateX(), rotateY(), rotateZ(), rotate3d(X, Y, Z, angle) X, Y, Z --->
 	
 rotateZ()：正值顺时针转，rotateY: 绕着Y轴开始旋转，rotateX():绕着X轴开始旋转。
 
-rotate3D(x,y,z.angle),三个轴一起转。对应轴上可填写1或0，表示是否参与旋转。
+rotate3D(X,Y,Z,angle),三个轴一起转。对应轴上可填写1或0，表示是否参与旋转Y。
 
-2.scale(); 以x/y为轴进行缩放
+2.scale(); 以X/Y为轴进行缩放，参数里填的倍数Z
 
-scale(x, y) 接受两个值，如果第二参数未提供，则第二个参数使用第一个参数的值
+scale(X, Y) 接受两个值，如果第二参数未提供，则第二个参数使用第一个参数的值
 
-scalex(),scaley() 值是数字表示倍数，不加任何单位，如果是赋值会发生倒立或反转。（x轴倒立，y轴翻转）
+scaleX(),scaleY() 值是数字表示倍数，不加任何单位，如果是赋值会发生倒立或反转。（X轴倒立，Y轴翻转）
 
-scalez()
+scaleZ()
 
-scale3d()  scale3d(sx,sy,sz)
+scale3d()  scale3d(sX,sY,sZ)
 
 
-3.skew(); 对元素进行倾斜扭曲
+3.skew(); 对元素进行倾斜扭曲，填的度数
 
-skew(x, y);接受两个值，第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认值为0
+skew(X, Y);接受两个值，第一个参数对应X轴，第二个参数对应Y轴。如果第二个参数未提供，则默认值为0
 
-skewx(), skewy()
+skewX(), skewY()
 
-4.translate(); 可以移动距离,相对于自身位置。
+4.translate(); 可以移动距离,相对于自身位置。填的距离，比如px
 
-    translate(x, [y])
+    translate(X, [Y])
 
-translatex(),translatey(),translatez(),translate3d(x, y, z)。利用这个可以实现居中展示：
+translateX(),translateY(),translateZ(),translate3d(X, Y, Z)。利用这个可以实现居中展示：
 	
 	div{	
 		position:absolute;
@@ -92,6 +92,20 @@ transition-delay:指定开始出现的延迟时间
 
   transition: width(如果高度也要实现渐变需要写all) 3000ms linear 20;
 
+以上面的例子作为示范：
+
+		<div></div>
+div{
+	width:100px;
+	height:100px;
+	transition:400px 2s;
+	transition-duration:3s;
+	transition-timing-function:linear;
+}
+div:hover{
+	width:400px
+}
+
 但是有些内容不能使用过度，如下图：
 
 能参与过渡的属性：
@@ -108,7 +122,9 @@ transition-delay:指定开始出现的延迟时间
 		50%{ width:200px;}         //50%时间宽度是200
 		100%{ height:200px;}		//最终状态高度变为蓝色
 	}
-
+在div里设置   
+	animation: demoMove 5s infinite;
+在style里设置@keyframe
 帧频里面如果只有 0% 和 100%两个关键帧，那么可以用 from to 代替
 
 ### animation 动画

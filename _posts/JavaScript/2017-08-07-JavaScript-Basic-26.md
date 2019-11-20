@@ -79,23 +79,7 @@ replace方法第二个参数还可以填一个function() ，它会自动给我�
     })); //theFirstName
 
 -------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+昨天视频看到这就结束了，所以今天继续看嗷，还是六点没起来，不过天气这么冷，没起来也正常啦，也好好学习吧
 
 ## exec方法（ 执行 完成 履行）
 
@@ -127,12 +111,14 @@ reg.exec(str): 如果没有g，跟match是一样的。如果有g属性，它就�
 
 
 正向预查：添加一个修饰条件，必须符合一定条件才能被匹配到。
-	
+	?=: ?跟着谁就是在谁后面
+	var str = "abcxabc";
 	var reg = /abc(?=x)/  //匹配x后面的abc
-	var reg = /(?=x)abc/  //匹配空后面是x加abc，这个是永远不可能的，所以正向预查得写后面。
+	var reg = /(?=x)abc/  //匹配后面是x的空加abc，这个是永远不可能的，所以正向预查得写后面。
 
 
-如果想使用$ 这个字符串，不能直接用$,要这样写“$$”,如果想匹配“?”，需要这要转义一下"/\?/"。
+如果想使用$ 这个字符串，不能直接用$,要这样写“$$”。
+如果想匹配“?”，需要这要转义一下"/\?/"。（？是量词）
 
 例一：连续字符串去重。
 	
@@ -143,12 +129,13 @@ reg.exec(str): 如果没有g，跟match是一样的。如果有g属性，它就�
 例二：将字符串按规定打点。三位打点。
 	
 	var str = "100000000";
-	var reg = /(?=(\B)(\d{3})+$)/g; //空后面跟3的倍数位的数字而且该数字是非单词边界，从后往前查，以空后面跟的数字结尾
+	var reg = /(?=(\B)(\d{3})+$)/g; //空后面跟3的倍数位的数字而且该数字是非单词边界，从后往前查，以空后面跟的数字结尾  +一到多次
 	str.replace(reg,"."); // 100.000.000
 
 例三：写一个邮箱验证的正则。
 	
 	var input = document.getElementsByTagName('input')[0];
+	var span = document.getElementByTagName('span');
 	input.onchange = function() {
 		var str = input.value;
 		var reg = /^[0-9A-z]{6,18}$/g;
@@ -156,6 +143,7 @@ reg.exec(str): 如果没有g，跟match是一样的。如果有g属性，它就�
 			console.log("please check your e-mail");
 		}else{
 			console.log("smart people!");
+			span.style.display = "none";
 		}
 	}
 	
