@@ -1,7 +1,7 @@
 ---
 layout: post
 title: ECMAScript装饰器
-date: 2018-07-30
+date: 2019-11-24
 tags: [JavaScript]
 ---
 

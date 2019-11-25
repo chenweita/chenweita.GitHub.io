@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 字符串方法总结
-date: 201-05-02
+date: 2019-11-18
 tags: [JavaScript]
 ---
 
