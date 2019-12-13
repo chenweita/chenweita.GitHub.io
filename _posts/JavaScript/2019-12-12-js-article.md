@@ -2,7 +2,7 @@
 layout: post
 date: 2019-12-12
 title: 忍者秘籍 读书笔记 -1
-tags: [Javascript]
+tags: [JavaScript]
 ---
 
 今天是双十二啊，要不是老师今天下午上课我估计这本书可能要到明年才能看，既然看了就打一下笔记好了。
