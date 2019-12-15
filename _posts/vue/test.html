@@ -1,0 +1,104 @@
+module simple_alutest;
+reg [2:0]ctrl;
+reg [7:0]a,b;
+wire [7:0]out;
+simple_alu uut(.ctrl(ctrl),.a(a),.b(b),.out(out));
+initial
+begin
+ctrl=3'b000;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b001;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b010;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b011;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b100;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b101;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b110;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+ctrl=3'b111;
+a=8'b00000001;
+b=8'b00000001;
+#100;
+$stop;
+end
+endmodule
+
+
+
+
+
+module simple_alu(
+input wire [7:0]a,b,
+input wire [2:0]ctrl,
+output reg [7:0]out
+);
+always@*
+begin
+case(ctrl)
+3'b000:out=a+b;
+3'b001:out=a-b;
+3'b010:out=a+1;
+3'b011:out=a-1;
+3'b100:out=a&b;
+3'b101:out=a|b;
+3'b110:out=~a;
+default:out=8'bxxxxxxxx;
+endcase
+end
+Endmodule
+
+module yxztj_testbench();
+    localparam T=20;
+    reg clk,rst,x;
+    wire z;
+    yxztj uut(.clk(clk),.rst(rst),.x(x),.z(z));
+    always begin
+        clk=1'b1;#(10);
+        clk=1'b0;#(10);
+    end
+    initial begin
+        rst=1'b1;#(10);
+        rst=1'b0;
+    end
+    initial
+    begin
+        x=1;#20;
+        x=1;#20;
+        x=0;#20;
+        x=0;#20;
+        x=1;#20;
+        x=0;#20;
+        x=0;#20;
+        x=1;#20;
+        x=0;#20;
+        x=0;#20;
+        x=0;#20;
+        x=0;#20;
+        x=1;#20;
+        x=0;#20;
+        x=0;#20;
+        x=1;#20;
+        x=0;#20;
+        x=1;#20;
+          $stop;
+      end
+  endmodule
+
