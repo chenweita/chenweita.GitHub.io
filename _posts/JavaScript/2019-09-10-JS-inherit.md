@@ -49,14 +49,15 @@ tags: [JavaScript]
                     target.prototype = origin.prototype;
                     Target.prototype.constructor = Target;
                 }
-                Person.prototype.lastName = "Leung";
+                Person.prototype.lastName = "huahua";
                 
                 function Person{ };
                 function Son(){ }
                 inherit(Person,Son);
         
+constructor:返回对创建此对象的数组函数的引用。
 
- 通过父类构造，继承父类的属性并保留传参的有点，然后通过将父类实例作为子类原型，实现函数复用
+ 通过父类构造，继承父类的属性并保留传参的优点，然后通过将父类实例作为子类原型，实现函数复用
  特点：可以继承实例属性/方法，也可以继承原型的属性和方法
  缺点：调用了两次父类的构造函数，生成了两份实例，
  这种方式就是利用共享原型来进行继承，但是这还是有个缺点就是，当我们给Son的原型上添加属性的时候，发现，Person的原型也会发生同样的变化，这就是我们不想要的，于是就产生了第四种方式了。

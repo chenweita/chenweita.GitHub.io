@@ -5,7 +5,7 @@ date: 2019-09-08
 tags: [JavaScript]
 ---
 
-嗷，可爱博主又来更新，
+嗷，可爱博主又来更新~
 
 今天要讲JavaScript很重要的知识——闭包。上一篇博文已经给大家介绍了闭包的基本概念了，今天将要跟大家继续深入地了解闭包的知识。首先我们还是来简单地复习一下基本知识吧。
 
@@ -19,7 +19,7 @@ tags: [JavaScript]
         var demo = a();
         demo();
 
-当a函数定义的时候，产生一个执行上下文，里面有一个aaa，和一个函数b，当b定义的时候，已经含有a的劳动成果，意思就是它已经有a的执行上下文，并且在b执行的时候，产生它自己的执行上下文，最后当a函数执行完之后，把函数b返回到了全局作用域，虽然a执行完，并且销毁了它自己的执行上下文，但是因为其内部b函数的存在，仍然有a的全部执行上下文，所以，仍然可以通过demo来访问function a里面的aaa变量。
+当a函数定义的时候，产生一个执行上下文，里面有一个aaa，和一个函数b，当b定义的时候，已经含有a的执行成果，意思就是它已经有a的执行上下文，并且在b执行的时候，产生它自己的执行上下文，最后当a函数执行完之后，把函数b返回到了全局作用域，虽然a执行完，并且销毁了它自己的执行上下文，但是因为其内部b函数的存在，仍然有a的全部执行上下文，所以，仍然可以通过demo来访问function a里面的aaa变量。
 
 ## 闭包的应用
 
@@ -212,13 +212,13 @@ tags: [JavaScript]
                  var a ;
                  document.write(b);  // undefined
                  f = 123;
-                 docuemnt.write(c);  //function (){}
-                 docuemnt.write(a); // 10
+                 document.write(c);  //undefined
+                 document.write(a); // 10
               }
               var a;
-              demo(1)
-              docuemnt.write(a);
-              document.write(f);
+              demo(1);
+              document.write(a);//100
+              document.write(f);//123
 
 最后注意一点就是 if语句定义函数是不允许的，但是var在if里面仍然是可以提升的。
 

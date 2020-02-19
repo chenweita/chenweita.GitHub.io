@@ -47,7 +47,7 @@ tags: [JavaScript]
 
 如图：<img src="https://ojlty2hua.qnssl.com/image-1501168174768-YmxvZzYuUE5H.PNG?imageView2/1/w/200/h/200/q/75|imageslim">
 
-这个时候就不像第一个情况那么准，这个时候，索引2的位置由c变成e，就是因为length为2，当往里面push的时候，系统就找到了索引为的位置，然后往里面push一个“e”，所以length是系统操作类数组的核心要点。来个例子：
+这个时候就不像第一个情况那么准，这个时候，索引2的位置由c变成e，就是因为length为2，当往里面push的时候，系统就找到了索引的位置，然后往里面push一个“e”，所以length是系统操作类数组的核心要点。来个例子：
 
 	var obj = { 
 		0 ："a",
@@ -88,7 +88,7 @@ tags: [JavaScript]
 		console.log('a')
 	}
 
-try  catch低级错误例如：语法错误，不能捉住。当报错的时候，系统会把错误信息作为一个实参，传到catch里面，这个实参有两个属性，分别是name,和message，错误的名称，和错误的信息。
+try  catch不能捉住低级错误例如：语法错误。当报错的时候，系统会把错误信息作为一个实参，传到catch里面，这个实参有两个属性，分别是name,和message，错误的名称，和错误的信息。
 
 但是实际开发中，可见性的错误都要利用兼容解决。
 
